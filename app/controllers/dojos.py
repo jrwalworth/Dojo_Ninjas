@@ -10,7 +10,7 @@ def index():
 @app.route('/dojos')
 def all_dojos():
     dojos = Dojo.get_all()
-    print(dojos)
+    #print(dojos)
     return render_template('index.html', all_dojos=dojos)
 
 #page to view single dojo and all ninjas
@@ -19,7 +19,7 @@ def dojo(id):
     data = {
         "id": id,
     }
-    dojo = Dojo.get_one(data)
+    dojo = Dojo.get_all_ninjas_from_dojo(data)
     return render_template('dojo_show.html', one_dojo=dojo)
 
 #hidden method to add new dojo

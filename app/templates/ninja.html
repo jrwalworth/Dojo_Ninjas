@@ -13,9 +13,28 @@
         <div class="row justify-content-evenly">
             <div class="col-6">
                 <h2 class="mb-4">New Ninja</h2>
-                <form action="/ninja/new" method="POST">
-                    <label for="name" >Name:</label>
-                    <input type="text" name="name">
+                <form action="/ninja/add" method="POST">
+                    <section>
+                        <label for="dojo">Dojo:</label>
+                        <select name="" id="">
+                            {% for d in ndojos %}
+                            <option value="{{d.id}}">{{d.name}}</option>
+                            {% endfor %}
+                        </select>
+                    </section>
+                    <section>
+                        <label for="fname" >First Name:</label>
+                        <input type="text" name="fname">
+                    </section>
+                    <section>
+                        <label for="lname" >Last Name:</label>
+                        <input type="text" name="lname">
+                    </section>
+                    <section>
+                        <label for="age" >Age:</label>
+                        <input type="text" name="age">
+                    </section>
+                    
                     <input class="btn btn-primary"type="submit" value="Create">
                 </form>
             </div>

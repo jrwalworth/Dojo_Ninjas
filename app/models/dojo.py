@@ -1,4 +1,5 @@
 from app.config.mysqlconnection import connectToMySQL
+from .ninja import Ninja
 
 class Dojo:
     db = 'dojos_and_ninjas_schema'
@@ -21,7 +22,7 @@ class Dojo:
     
     @classmethod
     def get_all_ninjas_from_dojo(cls, data):
-        query = "SELECT * FROM dojos LEFT JOIN ninjas on ninjas.dojo_id = dojos.id where dojos.id=%(id)s;"
+        query = "SELECT * FROM dojos LEFT JOIN ninjas on dojos.id = ninjas.dojo_id  where dojos.id=%(id)s;"
         results = connectToMySQL(cls.db).query_db(query)
         dojo = cls(results[0])
         for db_row in results:
@@ -29,7 +30,9 @@ class Dojo:
                 "id" : db_row["ninjas.id"],
                 "first_name" : db_row["first_name"],
                 "last_name" : db_row["last_name"],
-                "age" : db_row["age"]
+                "age" : db_row["age"],
+                "created_at" :  db_row["created_at"],
+                "updated_at" : db_row["updated_at"]
             }
             dojo.ninjas.append((cls.db).Ninja(ninja_data))
         return dojo
