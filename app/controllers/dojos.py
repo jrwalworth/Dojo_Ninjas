@@ -1,5 +1,6 @@
 from flask import render_template, request, redirect
 from app.models.dojo import Dojo
+from app.models.ninja import Ninja
 from app import app
 
 #Home route
@@ -20,6 +21,7 @@ def dojo(id):
         "id": id,
     }
     dojo = Dojo.get_all_ninjas_from_dojo(data)
+    # ninjas = Ninja.get_all()
     return render_template('dojo_show.html', one_dojo=dojo)
 
 #hidden method to add new dojo

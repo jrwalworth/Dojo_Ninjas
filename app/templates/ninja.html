@@ -16,7 +16,7 @@
                 <form action="/ninja/add" method="POST">
                     <section>
                         <label for="dojo">Dojo:</label>
-                        <select name="" id="">
+                        <select name="dojo" id="">
                             {% for d in ndojos %}
                             <option value="{{d.id}}">{{d.name}}</option>
                             {% endfor %}

@@ -11,26 +11,29 @@ from app import app
 @app.route('/ninjas')
 def all_ninjas():
     ninjas = Ninja.get_all()
-    print(ninjas)
-    return render_template('dojo_show.html', all_ninjas=ninjas)
+    return render_template('ninja.html', all_ninjas = ninjas)
 
 
 #page to add new ninja
 @app.route('/ninja/new')
 def new_ninja():
     # data = {
-    #     "first_name" : request.form["first_name"],
-    #     "last_name" : request.form["last_name"],
+    #     "first_name" : request.form["fname"],
+    #     "last_name" : request.form["lname"],
     #     "age": request.form["age"],
     # }
-    dojos = Dojo.get_all()
-    return render_template('ninja.html', ndojos = dojos)
+    # Ninja.save(data)
+    return render_template('ninja.html', ndojos = Dojo.get_all())
+    # return redirect('/')
 
 #hidden method to add new dojo
 @app.route('/ninja/add', methods=["POST"])
 def add_ninja():
     data = {
-        "id": id
+        "dojo_id" : request.form["dojo"],
+        "first_name" : request.form["fname"],
+        "last_name" : request.form["lname"],
+        "age": request.form["age"],
     }
     Ninja.save(data)
     return redirect('/')

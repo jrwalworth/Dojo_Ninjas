@@ -23,7 +23,7 @@ class Dojo:
     @classmethod
     def get_all_ninjas_from_dojo(cls, data):
         query = "SELECT * FROM dojos LEFT JOIN ninjas on dojos.id = ninjas.dojo_id  where dojos.id=%(id)s;"
-        results = connectToMySQL(cls.db).query_db(query)
+        results = connectToMySQL(cls.db).query_db(query, data)
         dojo = cls(results[0])
         for db_row in results:
             ninja_data = {
@@ -34,7 +34,7 @@ class Dojo:
                 "created_at" :  db_row["created_at"],
                 "updated_at" : db_row["updated_at"]
             }
-            dojo.ninjas.append((cls.db).Ninja(ninja_data))
+            dojo.ninjas.append(Ninja(ninja_data))
         return dojo
     
     
