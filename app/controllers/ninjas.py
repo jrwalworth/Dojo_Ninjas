@@ -3,10 +3,6 @@ from app.models.ninja import Ninja
 from app.models.dojo import Dojo
 from app import app
 
-#Home route
-# @app.route('/')
-# def index():
-#     return render_template('index.html')
 
 @app.route('/ninjas')
 def all_ninjas():
@@ -17,14 +13,8 @@ def all_ninjas():
 #page to add new ninja
 @app.route('/ninja/new')
 def new_ninja():
-    # data = {
-    #     "first_name" : request.form["fname"],
-    #     "last_name" : request.form["lname"],
-    #     "age": request.form["age"],
-    # }
-    # Ninja.save(data)
     return render_template('ninja.html', ndojos = Dojo.get_all())
-    # return redirect('/')
+
 
 #hidden method to add new dojo
 @app.route('/ninja/add', methods=["POST"])
@@ -35,5 +25,6 @@ def add_ninja():
         "last_name" : request.form["lname"],
         "age": request.form["age"],
     }
+    # id = request.form['dojo']
     Ninja.save(data)
-    return redirect('/')
+    return redirect(f'/dojo/show/{data["dojo_id"]}')

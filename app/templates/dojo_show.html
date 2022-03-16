@@ -13,14 +13,14 @@
         <div class="row justify-content-evenly">
             <div class="col-6">
                 <h2 class="mb-4">{{one_dojo.name}} Ninjas</h2>
-                <table>
+                <table class="table table-striped">
                     <thead>
                         <th>First Name</th>
                         <th>Last Name</th>
                         <th>Age</th>
                     </thead>
                     <tbody>
-                        {% for n in ninjas %}
+                        {% for n in one_dojo.ninjas %}
                         <tr>
                             <td>{{n.first_name}}</td>
                             <td>{{n.last_name}}</td>
@@ -33,14 +33,6 @@
 
                 <a href="/">Home</a>
             </div>
-            <!-- <div class="col-6">
-                <h2 class="mb-4">All Dojos</h2>
-                <ul id="dojo_list">
-                    {% for d in all_dojos %}
-                    <li><a href="/dojo/show/{{d.id}}">{{d.name}}</a></li>
-                    {% endfor %}
-                </ul>
-            </div> -->
         </div>
     </div>
 </body>
